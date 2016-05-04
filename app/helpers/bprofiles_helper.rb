@@ -1,0 +1,2 @@
+module BprofilesHelper
+end

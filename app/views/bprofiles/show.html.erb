@@ -1,0 +1,50 @@
+
+<div class="row">
+   <div class="col-xs-2">
+   </div>
+   <div class="col-xs-8">
+     <div class="jumbotron">
+       <h1><%= @bprofile.name %></h1>
+       <p>...</p>
+       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+     </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Company Profile</h3>
+          </div>
+          <div class="panel-body">
+            <p id="notice"><%= notice %></p>
+
+            <p>
+              <strong>Name:</strong>
+              <%= @bprofile.name %>
+            </p>
+
+            <p>
+              <strong>Summary:</strong>
+              <%= @bprofile.summary %>
+            </p>
+
+            <p>
+              <strong>Copmpany type:</strong>
+              <%= @bprofile.copmpany_type %>
+            </p>
+
+            <p>
+              <strong>Number of employes:</strong>
+              <%= @bprofile.number_of_employes %>
+            </p>
+
+            <p>
+              <strong>Industry:</strong>
+              <%= @bprofile.industry %>
+            </p>
+
+            <%= link_to 'Edit', edit_bprofile_path(@bprofile), class: 'btn btn-primary btn-xs' %> |
+            <%= link_to 'Back', bprofiles_path, class: 'btn btn-primary btn-xs' %>
+          </div>
+          </div>
+         </div>
+   <div class="col-xs-2">
+   </div>
+</div>
