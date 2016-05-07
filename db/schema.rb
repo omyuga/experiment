@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503222000) do
+ActiveRecord::Schema.define(version: 20160506150242) do
+
+  create_table "applications", force: :cascade do |t|
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "job_id"
+  end
+
+  add_index "applications", ["job_id"], name: "index_applications_on_job_id"
 
   create_table "bprofiles", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +34,18 @@ ActiveRecord::Schema.define(version: 20160503222000) do
   end
 
   add_index "bprofiles", ["user_id"], name: "index_bprofiles_on_user_id"
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "job_description"
+    t.text     "job_function"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.integer  "bprofile_id"
+  end
+
+  add_index "jobs", ["bprofile_id"], name: "index_jobs_on_bprofile_id"
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.text     "content"

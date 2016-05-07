@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>Company:</strong>
+  <%= current_user.bprofile.name %>
+</p>
+<p>
+   <strong>Name:</strong>
+   <%= current_user.first_name %>
+   <%= current_user.last_name %>
+</p>
+<p>
+  <strong>Attachment:</strong>
+  <%= @application.attachment %><%= link_to "Download Attachment", @application.attachment_url %>
+
+</p>
+
+<%= link_to 'Edit', edit_application_path(@application) %> |
+<%= link_to 'Back', applications_path %>
