@@ -1,13 +1,13 @@
-<%= simple_form_for(@application) do |f| %>
+<%= simple_form_for([@job, @job.application.build]) do |f| %>
   <%= f.error_notification %>
 <p>
   <strong>Company:</strong>
-  <%= current_user.bprofile.name %>
+  <%= @user.bprofile.name %>
 </p>
 <p>
    <strong>Name:</strong>
-   <%= current_user.first_name %>
-   <%= current_user.last_name %>
+   <%= user.first_name %>
+   <%= user.last_name %>
 </p>
   <div class="form-inputs">
     <%= f.input :attachment %>

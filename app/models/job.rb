@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :bprofile
-  has_many :applications
+  belongs_to :user, dependent: :destroy
+  belongs_to :bprofile, dependent: :destroy
+  has_many :applications, dependent: :destroy
 end

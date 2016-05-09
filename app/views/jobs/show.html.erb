@@ -9,6 +9,6 @@
   <strong>Job function:</strong>
   <%= @job.job_function %>
 </p>
-<%= link_to 'Apply', new_application_path %>
+<%= link_to 'Apply', new_job_application_path(@job) %>
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>

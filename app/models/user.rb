@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          has_many :posts
          has_one :bprofile, dependent: :destroy
          has_many :jobs
+         has_many :applications, :through => :jobs
   mount_uploader :avatar, AvatarUploader
          
          

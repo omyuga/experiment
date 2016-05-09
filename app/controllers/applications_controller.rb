@@ -25,6 +25,9 @@ class ApplicationsController < ApplicationController
   # POST /applications.json
   def create
     @application = Application.new(application_params)
+    @application.job_id = @job.id
+    @application.user_id = current_user.id
+    @application.bprofile_id = current_user.bprofile.id
 
     respond_to do |format|
       if @application.save
