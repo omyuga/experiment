@@ -5,11 +5,13 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     @jobs = Job.all
+   # @applications = Job.applications.all
   end
 
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    @applications = @job.applications#.order(created_at: :desc)
   end
 
   # GET /jobs/new

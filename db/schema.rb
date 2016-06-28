@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160508114808) do
+ActiveRecord::Schema.define(version: 20160627202234) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "attachment"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20160508114808) do
   end
 
   add_index "bprofiles", ["user_id"], name: "index_bprofiles_on_user_id"
+
+  create_table "invoices", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "bprofile_id"
+  end
+
+  add_index "invoices", ["bprofile_id"], name: "index_invoices_on_bprofile_id"
+  add_index "invoices", ["user_id"], name: "index_invoices_on_user_id"
 
   create_table "jobs", force: :cascade do |t|
     t.string   "job_description"

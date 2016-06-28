@@ -1,6 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Posted By:</strong>
+  <%= @job.user.first_name %>
+</p>
+<p>
+  <strong>Company:</strong>
+  <%= @job.bprofile.name %>
+</p>
+<p>
   <strong>Job description:</strong>
   <%= @job.job_description %>
 </p>
@@ -9,6 +17,19 @@
   <strong>Job function:</strong>
   <%= @job.job_function %>
 </p>
-<%= link_to 'Apply', new_job_application_path(@job) %>
-<%= link_to 'Edit', edit_job_path(@job) %> |
+<p>
+  <strong>Applications:</strong>
+  <% if @applications.present? %>
+<%  @job.applications.each do |application| %>
+<p>
+  <strong>Applicant:</strong>
+  <%= application.user.first_name %>   <%= application.attachment %>
+</p>
+<% end %>
+<% end %>
+</p>
+  <%#= render partial: 'application/_app' %>
+
+<%= link_to 'Apply', new_job_applications_path(@job) %>
+<%= link_to 'Edit', edit_job_path %>
 <%= link_to 'Back', jobs_path %>

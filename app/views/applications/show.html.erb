@@ -1,18 +1,18 @@
-<p id="notice"><%= notice %></p>
+<h1>Hello </h1>
 <p>
   <strong>Company:</strong>
-  <%= current_user.bprofile.name %>
+  <%#= @application.bprofile.name %>
 </p>
 <p>
    <strong>Name:</strong>
-   <%= current_user.first_name %>
-   <%= current_user.last_name %>
+   <%#= @application.user.first_name %>
+   <%#= @application.user.last_name %>
 </p>
 <p>
   <strong>Attachment:</strong>
-  <%= @application.attachment %><%= link_to "Download Attachment", @application.attachment_url %>
+  <%= @job.applications.attachment %><%= link_to "Download Attachment", @job.applications.attachment_url %>
 
 </p>
 
-<%= link_to 'Edit', edit_application_path(@application) %> |
-<%= link_to 'Back', applications_path %>
+<%#= link_to 'Edit', edit_application_path(@application) %> |
+<%#= link_to 'Back', applications_path %>

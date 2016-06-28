@@ -1,16 +1,8 @@
-<%= simple_form_for([@job, @job.application.build]) do |f| %>
-  <%= f.error_notification %>
-<p>
-  <strong>Company:</strong>
-  <%= @user.bprofile.name %>
-</p>
-<p>
-   <strong>Name:</strong>
-   <%= user.first_name %>
-   <%= user.last_name %>
-</p>
-  <div class="form-inputs">
-    <%= f.input :attachment %>
+<%= form_for :application, url: {action: "create"} do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :attachment %><br>
+    <%= f.file_field :attachment, class: 'form-control' %>
   </div>
 
   <div class="form-actions">

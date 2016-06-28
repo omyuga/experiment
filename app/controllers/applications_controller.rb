@@ -1,47 +1,37 @@
 class ApplicationsController < ApplicationController
-  before_action :set_application, only: [:show, :edit, :update, :destroy]
+   before_action :find_job
+   before_action :set_application, only: [:show, :edit, :update, :destroy]
 
-  # GET /applications
-  # GET /applications.json
   def index
     @applications = Application.all
   end
 
-  # GET /applications/1
-  # GET /applications/1.json
   def show
+    @application = Application.find(params[:application_id])
+    #@application = @job.applications.find(params[:id])
   end
 
-  # GET /applications/new
-  def new
-    @application = Application.new
-  end
+  #def new
+    #@job = Job.find(params[:job_id])
+    #@user = User.find(params[:user_id])
+    #@application = Application.new
+  #end
 
-  # GET /applications/1/edit
   def edit
   end
 
-  # POST /applications
-  # POST /applications.json
   def create
     @application = Application.new(application_params)
     @application.job_id = @job.id
     @application.user_id = current_user.id
     @application.bprofile_id = current_user.bprofile.id
-
-    respond_to do |format|
-      if @application.save
-        format.html { redirect_to @application, notice: 'Application was successfully created.' }
-        format.json { render :show, status: :created, location: @application }
+    if @application.save
+       redirect_to @job, notice: 'Application was successfully updated.'
       else
-        format.html { render :new }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
+          render notice: 'Application was not updated.'
     end
   end
 
-  # PATCH/PUT /applications/1
-  # PATCH/PUT /applications/1.json
   def update
     respond_to do |format|
       if @application.update(application_params)
@@ -54,8 +44,6 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  # DELETE /applications/1
-  # DELETE /applications/1.json
   def destroy
     @application.destroy
     respond_to do |format|
@@ -73,5 +61,9 @@ class ApplicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
       params.require(:application).permit(:attachment)
+    end
+
+    def find_job
+      @job = Job.find(params[:job_id])
     end
 end
