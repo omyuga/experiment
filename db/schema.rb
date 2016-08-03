@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627202234) do
+ActiveRecord::Schema.define(version: 20160803200540) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "attachment"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 20160627202234) do
   end
 
   add_index "bprofiles", ["user_id"], name: "index_bprofiles_on_user_id"
+
+  create_table "invoice_items", force: :cascade do |t|
+    t.string   "description"
+    t.decimal  "quantity"
+    t.integer  "product_id"
+    t.integer  "tax_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "invoice_items", ["product_id"], name: "index_invoice_items_on_product_id"
 
   create_table "invoices", force: :cascade do |t|
     t.decimal  "amount"
@@ -72,6 +83,27 @@ ActiveRecord::Schema.define(version: 20160627202234) do
 
   add_index "posts", ["bprofile_id"], name: "index_posts_on_bprofile_id"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "products", force: :cascade do |t|
+    t.string   "product_name"
+    t.string   "product_description"
+    t.decimal  "product_price"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "bprofile_id"
+    t.integer  "user_id"
+  end
+
+  add_index "products", ["bprofile_id"], name: "index_products_on_bprofile_id"
+  add_index "products", ["user_id"], name: "index_products_on_user_id"
+
+  create_table "taxes", force: :cascade do |t|
+    t.string   "name"
+    t.decimal  "percentage"
+    t.boolean  "default"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

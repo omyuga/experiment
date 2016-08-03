@@ -1,0 +1,22 @@
+<h1>Taxes#new</h1>
+<div class="row">
+  <div class="col-xs-3">
+  </div>
+  <div class="col-xs-6">
+      <%= simple_form_for(@taxes) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :name %>
+          <%= f.input :percentage %>
+          <%= f.check_box :default %> Default
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+     <% end %>
+  </div>
+  <div class="col-xs-3">
+  </div>
+</div>

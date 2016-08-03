@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :invoices
+  resources :products
+  resources :taxes
 
   resources :jobs do
       resource :applications
