@@ -1,3 +1,5 @@
 class InvoiceItem < ActiveRecord::Base
-  belongs_to :product
+  has_one :product
+  belongs_to :invoice
+  has_many :tax
 end
