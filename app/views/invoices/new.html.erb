@@ -10,21 +10,22 @@
 </p>
 
     <%= simple_form_for(@invoice) do |f| %>
-    
+
       <%= f.error_notification %>
-    
+
       <div class="form-inputs">
            <%= f.input :amount %>
       </div>
-      
-    <%= simple_form.fields_for :invoice_item do | invoice_item | %>
+
+    <%= f.fields_for :invoice_items do | invoice_item | %>
       <div class="form-inputs">
            <%= invoice_item.input :description %>
            <%= invoice_item.input :quantity %>
       </div>
-      
-      
+    <% end %>
+
       <div class="form-actions">
            <%= f.button :submit %>
       </div>
-    <% end %>
+
+<% end %>

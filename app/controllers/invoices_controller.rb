@@ -6,7 +6,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
-    #@invoice.invoice_items.build
+    @invoice.invoice_items.build
     @invoice.products.build
     @invoice.taxes.build
   end

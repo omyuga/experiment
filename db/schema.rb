@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804015850) do
+ActiveRecord::Schema.define(version: 20160804155517) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "attachment"
@@ -46,21 +46,21 @@ ActiveRecord::Schema.define(version: 20160804015850) do
     t.integer  "tax_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "invoice_id"
   end
 
+  add_index "invoice_items", ["invoice_id"], name: "index_invoice_items_on_invoice_id"
   add_index "invoice_items", ["product_id"], name: "index_invoice_items_on_product_id"
 
   create_table "invoices", force: :cascade do |t|
     t.decimal  "amount"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "bprofile_id"
-    t.integer  "invoice_item_id"
   end
 
   add_index "invoices", ["bprofile_id"], name: "index_invoices_on_bprofile_id"
-  add_index "invoices", ["invoice_item_id"], name: "index_invoices_on_invoice_item_id"
   add_index "invoices", ["user_id"], name: "index_invoices_on_user_id"
 
   create_table "jobs", force: :cascade do |t|
@@ -94,9 +94,11 @@ ActiveRecord::Schema.define(version: 20160804015850) do
     t.datetime "updated_at",          null: false
     t.integer  "bprofile_id"
     t.integer  "user_id"
+    t.integer  "invoice_id"
   end
 
   add_index "products", ["bprofile_id"], name: "index_products_on_bprofile_id"
+  add_index "products", ["invoice_id"], name: "index_products_on_invoice_id"
   add_index "products", ["user_id"], name: "index_products_on_user_id"
 
   create_table "taxes", force: :cascade do |t|
@@ -105,7 +107,10 @@ ActiveRecord::Schema.define(version: 20160804015850) do
     t.boolean  "default"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "invoice_id"
   end
+
+  add_index "taxes", ["invoice_id"], name: "index_taxes_on_invoice_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
