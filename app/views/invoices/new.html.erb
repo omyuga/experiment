@@ -9,23 +9,32 @@
   <%= current_user.bprofile.name %>
 </p>
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Descrition</th>
+      <th>Product Unit Cost</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
     <%= simple_form_for(@invoice) do |f| %>
-
       <%= f.error_notification %>
+       <tr id='row0'>
+           <%= f.fields_for :products do | product | %>
+               <td><%= product.input :product_name, placeholder: 'Product Name', label: false %></td>
+               <td><%= product.input :product_description, placeholder: 'Product Description', label: false %></td>
+               <td><%= product.input :product_price, placeholder: 'Product Unit Cost', label: false %></td>
+           <% end %>     
 
-      <div class="form-inputs">
-           <%= f.input :amount %>
-      </div>
+           <%= f.fields_for :invoice_items do | invoice_item | %>
+               <td><%= invoice_item.input :quantity, placeholder: 'Quantity', label: false %></td>
+           <% end %> 
+               <td><button id="add_row" type="button" class="btn btn-primary">Add</button></td>
+       </tr>
+       <tr id='row1'></tr>
+    <% end %> 
+</tbody>
 
-    <%= f.fields_for :invoice_items do | invoice_item | %>
-      <div class="form-inputs">
-           <%= invoice_item.input :description %>
-           <%= invoice_item.input :quantity %>
-      </div>
-    <% end %>
 
-      <div class="form-actions">
-           <%= f.button :submit %>
-      </div>
-
-<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804155517) do
+ActiveRecord::Schema.define(version: 20160815000058) do
 
   create_table "applications", force: :cascade do |t|
     t.string   "attachment"
@@ -40,12 +40,11 @@ ActiveRecord::Schema.define(version: 20160804155517) do
   add_index "bprofiles", ["user_id"], name: "index_bprofiles_on_user_id"
 
   create_table "invoice_items", force: :cascade do |t|
-    t.string   "description"
     t.decimal  "quantity"
     t.integer  "product_id"
     t.integer  "tax_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "invoice_id"
   end
 
@@ -53,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160804155517) do
   add_index "invoice_items", ["product_id"], name: "index_invoice_items_on_product_id"
 
   create_table "invoices", force: :cascade do |t|
-    t.decimal  "amount"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -100,6 +98,15 @@ ActiveRecord::Schema.define(version: 20160804155517) do
   add_index "products", ["bprofile_id"], name: "index_products_on_bprofile_id"
   add_index "products", ["invoice_id"], name: "index_products_on_invoice_id"
   add_index "products", ["user_id"], name: "index_products_on_user_id"
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "task_name"
+    t.string   "task_description"
+    t.decimal  "task_rate"
+    t.integer  "tax"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "taxes", force: :cascade do |t|
     t.string   "name"

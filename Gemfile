@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem "cocoon"
 gem 'searchkick'
 gem 'awesome_print'
 gem 'carrierwave'
